@@ -4,7 +4,7 @@ comments: true
 layout: post
 title: Review Ticket 3
 description: Review ticket for week 3
-type: Tangibles
+type: tangibles
 courses: { compsci: {week: 3} }
 ---
 
