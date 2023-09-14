@@ -11,6 +11,9 @@ courses: { compsci: {week: 3} }
 ### Summary of Accomplishments
 > Update Blog to contain all hacks.  
 - Reviewed with Pair. Discuss/Show evidence.
+
+Rayyan and I worked together on all of our issues, with me helping him and with him helping me. We've had a lot of collaboration both in school and not in school. This can be proven by our text messages, which are primarily about the material in this class.
+
 - Discuss laptop, cloud computer.
 - Discuss tools setup and troubles.
 - Show personal blog / home page.
