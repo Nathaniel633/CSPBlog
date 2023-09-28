@@ -1,0 +1,9 @@
+---
+layout: post
+title: Review Ticket 6
+description: Review Ticket for week 6
+toc: true
+comments: true
+courses: {compsci: {week: 6} }
+type: hacks
+---
