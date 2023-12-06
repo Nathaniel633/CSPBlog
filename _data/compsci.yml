@@ -12,4 +12,28 @@ Unit2:
 Unit3:
   title: Web Application, Data, and N@tM
   start: 8
+  end: 12
+Unit4:
+  title: Warm-up Data Abstraction Project, Create Performance Task (CPT) kickoff
+  start: 13
   end: 14
+Unit5:
+  title: CPT design and development, Computer Systems, Networks, Impact of Computing
+  start: 15
+  end: 21
+Unit6:
+  title: Create Performance Task (CPT) and N@tM, MCQ Exam Practice
+  start: 22
+  end: 24
+Unit7:
+  title: Data Structures and Data Science
+  start: 25
+  end: 29
+Unit8:
+  title: AP Weeks
+  start: 30
+  end: 32
+Unit9:
+  title: Passion Project and N@tM
+  start: 33
+  end: 36
