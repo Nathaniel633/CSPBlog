@@ -134,9 +134,15 @@ Data Privacy and Security:
 
 1. Describe the key differences between the Creative Commons Zero v1.0 Universal, Open Source MIT License, and Open Source GPL License.
 
+Creative Commons 0, or CC0, isn't a software liscense but is used for domain grants. The Open Source MIT License grants the most permission for those involved with the creation and distribution of software. Open Source GPL License is a more strict permission grant, having control over the liscense of distribution.
+
 2. Give examples that illustrate how companies, such as Qualcomm and Red Hat, have leveraged Open Source licenses to establish unique business models.
 
+Qualcomm has used Open Source licenses in their help with the open source operating system Android. Android's use of the Apache License has given Qualcomm the opportunity to take over the market and create software for Android's hardware. Red Hat takes a subscription-based approach to distributing open source licenses, primarily focusing around the Linux operating system.
+
 3. Why are businesses that heavily rely on Open Source software still need to generate income and how they manage this within the constraints of Open Source licenses.
+
+Businesses that rely on Open Source software have many reasons why they need to generate income, the most prominant being that the software is 9 times out of 10 free, so the company has to rely on other means to generate income. A way Red Hat combats this is by charging membership to use the benefits of its software. There is also the potential addition of services the company could offer aswell.
 
 # <span style="color:cadetblue">Extra Credit</span>
 
