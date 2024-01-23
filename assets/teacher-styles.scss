@@ -1,10 +1,6 @@
-
-
-@import "{{ site.theme }}";
-
 // STYLING PREFERNCES for SITE
 // mixin used as a template for buttons
-  @mixin button {
+@mixin button {
     width: auto;
     height: auto;
     border-radius: 10px;
