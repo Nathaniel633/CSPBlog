@@ -1,0 +1,63 @@
+/* define class for redifined button */
+.button, .calculator-equals, .calculator-clear, .calculator-operation, .calculator-number {
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  background-color: #21807c;
+  border: 3px solid black;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: span 1;
+  grid-row: span 1;
+  transition: all 0.5s;
+}
+
+/* darkens the background color on hover to create a selecting effect */
+.button:hover, .calculator-equals:hover, .calculator-clear:hover, .calculator-operation:hover, .calculator-number:hover {
+  background-color: #373737;
+}
+
+/* "row style" is flexible size and aligns pictures in center */
+.row {
+  align-items: center;
+  display: flex;
+}
+
+/* "column style" is one-third of the width with padding */
+.column {
+  flex: 16.66%;
+  padding: 3px;
+}
+
+/* class to create the calculator's container; uses CSS grid dsiplay to partition off buttons */
+.calculator-container {
+  width: 90vw; /* this width and height is specified for mobile devices by default */
+  height: 80vh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* fr is a special unit; learn more here: https://css-tricks.com/introduction-fr-css-unit/  */
+  grid-template-rows: 0.5fr repeat(4, 1fr);
+  gap: 10px 10px;
+}
+
+@media (min-width: 600px) {
+  .calculator-container {
+    width: 40vw;
+    height: 80vh;
+  }
+}
+/* styling for the calculator number button */
+/* styling for the calculator operation button */
+/* styling for the calculator clear button */
+.calculator-clear {
+  background-color: #e68b1c;
+}
+
+/* styling for the calculator equals button */
+.calculator-equals {
+  background-color: #e70f0f;
+}
+
+/*# sourceMappingURL=teacher-styles.css.map */
