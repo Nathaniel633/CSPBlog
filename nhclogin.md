@@ -1,5 +1,11 @@
 ---
+toc: true
+comments: false
 layout: post
+title: loggg
+description: ththyh
+type: hacks
+courses: { compsci: {week: 20} }
 ---
 
 <!-- 
