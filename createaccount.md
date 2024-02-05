@@ -1,13 +1,22 @@
-<!-- 
-A simple HTML login form with a Login action when the button is pressed.  
+---
+permalink: /signup
+---
 
-The form triggers the login_user function defined in the JavaScript below when the Login button is pressed.
--->
+<html>
+    <h1 style="text-align: center;">
+        Create Account!
+    </h1>
+</html>
+
+<!-- html -->
 
 <html><head>
-<h1 style="text-align: center;">Login</h1>
 <p></p>
-<form action="javascript:login_user();">
+<form action="javascript:create_user();">
+    <p><label>
+        Name:
+        <input type="text" name="uid" id="name" required>
+    </label></p>
     <p><label>
         User ID:
         <input type="text" name="uid" id="uid" required>
@@ -16,31 +25,36 @@ The form triggers the login_user function defined in the JavaScript below when t
         Password:
         <input type="password" name="password" id="password" required>
     </label></p>
+    <p><label>
+        DOB:
+        <input type="date" name="uid" id="dob" required>
+    </label></p>
+    <p><label>
+        Email:
+        <input type="text" name="uid" id="email" required>
+    </label></p>
     <p>
-        <button>Login</button>
+        <button>Create</button>
     </p>
 </form>
 
-<h3>Dont have an account?</h3>
-<a href="createaccount.html">Create an account</a>
+<!-- javascript -->
 
-<!-- 
-Below JavaScript code is designed to handle user authentication in a web application. It's written to work with a backend server that uses JWT (JSON Web Tokens) for authentication.
-
-The script defines a function when the page loads. This function is triggered when the Login button in the HTML form above is pressed. 
- -->
 <script type="module" defer="">
     // uri variable and options object are obtained from config.js
     import { uri, options } from '{{site.baseurl}}/assets/js/api/config.js';
 
-    function login_user(){
+    function create_user(){
         // Set Authenticate endpoint
-        const url = uri + '/api/users/authenticate';
+        const url = uri + '/api/users';
 
         // Set the body of the request to include login data from the DOM
         const body = {
+            name: document.getElementById("name").value,
             uid: document.getElementById("uid").value,
             password: document.getElementById("password").value,
+            dob: document.getElementById("dob").value,
+            email: document.getElementById("email").value,
         };
 
         // Change options according to Authentication requirements
@@ -51,18 +65,19 @@ The script defines a function when the page loads. This function is triggered wh
             body: JSON.stringify(body)
         };
 
-        // Fetch JWT
+        // Fetch JWT to create user
         fetch(url, authOptions)
         .then(response => {
             // handle error response from Web API
             if (!response.ok) {
-                const errorMsg = 'Login error: ' + response.status;
+                const errorMsg = 'Signup error: ' + response.status;
                 console.log(errorMsg);
+                alert("Error creating user :O");
                 return;
             }
             // Success!!!
-            // Redirect to the database page
-            window.location.href = "{{site.baseurl}}/data/database";
+            // Redirect to login ??
+                alert("User created successfully!");
         })
         // catch fetch errors (ie ACCESS to server blocked)
         .catch(err => {
@@ -71,6 +86,6 @@ The script defines a function when the page loads. This function is triggered wh
     }
 
     // Attach login_user to the window object, allowing access to form action
-    window.login_user = login_user;
+    window.create_user = create_user;
 </script>
 </head></html>
