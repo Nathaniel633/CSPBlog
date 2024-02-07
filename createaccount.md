@@ -8,6 +8,19 @@ permalink: /signup
     </h1>
 </html>
 
+<!-- style -->
+
+<style>
+        .login-button {
+    width: 200px; /* Set the desired width */
+    height: 30px; /* Set the desired height */
+    font-size: 20px; /* Set the desired font size */
+    font-weight: bold;
+    background-color: lightgrey;
+    /* Additional styles can be added as needed */
+  }
+    </style>
+
 <!-- html -->
 
 <html><head>
@@ -34,7 +47,7 @@ permalink: /signup
         <input type="text" name="uid" id="email" required>
     </label></p>
     <p>
-        <button>Create</button>
+        <button class="login-button">Create</button>
     </p>
 </form>
 

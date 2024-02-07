@@ -5,6 +5,24 @@ The form triggers the login_user function defined in the JavaScript below when t
 -->
 
 <html><head>
+    <style>
+        .login-button {
+            width: 200px;
+            height: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: lightgrey;
+            text-align: center;
+            /* Additional styles can be added as needed */
+        }
+
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
 <h1 style="text-align: center;">Login</h1>
 <p></p>
 <form action="javascript:login_user();">
@@ -17,12 +35,12 @@ The form triggers the login_user function defined in the JavaScript below when t
         <input type="password" name="password" id="password" required>
     </label></p>
     <p>
-        <button>Login</button>
+        <button class="login-button">Login</button>
     </p>
 </form>
-
 <h3>Dont have an account?</h3>
-<a href="createaccount.html">Create an account</a>
+<a href="/student/signup">Create an account</a>
+
 
 <!-- 
 Below JavaScript code is designed to handle user authentication in a web application. It's written to work with a backend server that uses JWT (JSON Web Tokens) for authentication.
@@ -58,10 +76,13 @@ The script defines a function when the page loads. This function is triggered wh
             if (!response.ok) {
                 const errorMsg = 'Login error: ' + response.status;
                 console.log(errorMsg);
+                alert("Login error!")
+                window.location.href = "{{site.baseurl}}/403"
                 return;
             }
             // Success!!!
             // Redirect to the database page
+            console.log("Login success")
             window.location.href = "{{site.baseurl}}/data/database";
         })
         // catch fetch errors (ie ACCESS to server blocked)
