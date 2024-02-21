@@ -1,5 +1,5 @@
 ---
-permalink: /403
+permalink: /401
 layout: base
 search_exclude: true
 ---
@@ -19,7 +19,7 @@ search_exclude: true
 </style>
 
 <div class="container">
-  <h1>403</h1>
+  <h1>401</h1>
   <p><strong>Unauthorized!</strong></p>
   <p>Username or password incorrect; authorization not granted</p>
   <a href="/student/">Back to login page</a>

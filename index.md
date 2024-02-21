@@ -77,7 +77,7 @@ The script defines a function when the page loads. This function is triggered wh
                 const errorMsg = 'Login error: ' + response.status;
                 console.log(errorMsg);
                 alert("Login error!")
-                window.location.href = "{{site.baseurl}}/403"
+                window.location.href = "{{site.baseurl}}/401"
                 return;
             }
             // Success!!!
