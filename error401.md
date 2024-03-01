@@ -1,6 +1,6 @@
 ---
 permalink: /401
-layout: base
+layout: post
 search_exclude: true
 ---
 
