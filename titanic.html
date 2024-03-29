@@ -1,6 +1,6 @@
 ---
 permalink: /titanic/
-layout: base
+layout: default
 title: Titanic
 search_exclude: true
 ---
@@ -54,7 +54,7 @@ search_exclude: true
         function predictSurvival() {
             const Pclass = document.getElementById('passenger-class').value;
             const Age = document.getElementById('age').value;
-            const Sex = document.getElementById('gender').value;
+            const Sex = document.getElementById('sex').value;
             const SibSp = document.getElementById('sibsp').value;
             const Parch = document.getElementById('parch').value;
             const Fare = document.getElementById('fare').value;
@@ -68,7 +68,7 @@ search_exclude: true
                 Fare
             };
 
-            fetch('http://127.0.0.1:8086/api/titanic/predict', {
+            fetch('http://127.0.0.1:8087/api/titanic/predict', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -1,0 +1,110 @@
+---
+permalink: /blackjack/
+layout: default
+title: Blackjack assister
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titanic Survival Prediction</title>
+</head>
+<body>
+    <h1>Blackjack Stragitizer 2000</h1> 
+    <div>
+        <label for="age">Card 1:</label>
+        <select id="card">
+            <option value="0">Ace</option>
+            <option value="1">10/Face</option>
+            <option value="2">9</option>
+            <option value="3">8</option>
+            <option value="4">7</option>
+            <option value="5">6</option>
+            <option value="6">5</option>
+            <option value="7">4</option>
+            <option value="8">3</option>
+            <option value="9">2</option>
+        </select>
+    </div>
+    <div>
+        <label for="gender">Card 2:</label>
+        <select id="card">
+            <option value="0">Ace</option>
+            <option value="1">10/Face</option>
+            <option value="2">9</option>
+            <option value="3">8</option>
+            <option value="4">7</option>
+            <option value="5">6</option>
+            <option value="6">5</option>
+            <option value="7">4</option>
+            <option value="8">3</option>
+            <option value="9">2</option>
+        </select>
+    </div>
+    <div>
+        <label for="sibsp">Dealer card:</label>
+        <select id="card">
+            <option value="0">Ace</option>
+            <option value="1">10/Face</option>
+            <option value="2">9</option>
+            <option value="3">8</option>
+            <option value="4">7</option>
+            <option value="5">6</option>
+            <option value="6">5</option>
+            <option value="7">4</option>
+            <option value="8">3</option>
+            <option value="9">2</option>
+        </select>
+    </div>
+    <div>
+        <label for="parch">Decision:</label>
+        <select id="card">
+            <option value="0">Hit</option>
+            <option value="1">Stand</option>
+            <option value="2">Double-down</option>
+            <option value="3">Split</option>
+        </select>
+    </div>
+    <div>
+        <button onclick="predictSurvival()">Predict Win Chance</button>
+    </div>
+    <div id="prediction"></div>
+
+    <script>
+        function predictSurvival() {
+            const Pclass = document.getElementById('passenger-class').value;
+            const Age = document.getElementById('age').value;
+            const Sex = document.getElementById('sex').value;
+            const SibSp = document.getElementById('sibsp').value;
+            const Parch = document.getElementById('parch').value;
+            const Fare = document.getElementById('fare').value;
+
+            const data = {
+                Pclass,
+                Sex,
+                Age,
+                SibSp,
+                Parch,
+                Fare
+            };
+
+            fetch('http://127.0.0.1:8087/api/titanic/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(prediction => {
+                document.getElementById('prediction').innerText = `Survival Prediction: ${prediction.message*100}%`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
