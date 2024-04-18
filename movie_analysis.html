@@ -1,0 +1,49 @@
+---
+permalink: /movie/
+layout: default
+title: Movie Sentiment Analysis
+search_exclude: true
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Sentiment Analysis</title>
+</head>
+<body>
+  <h1>Movie Sentiment Analysis</h1>
+  <div>
+    <label for="review">Enter your movie review:</label>
+    <textarea id="review" rows="5"></textarea>
+  </div>
+  <button id="predict">Predict Sentiment</button>
+  <div id="result"></div>
+
+  <script>
+    const predictButton = document.getElementById('predict');
+    const resultDiv = document.getElementById('result');
+
+    predictButton.addEventListener('click', () => {
+      const reviewText = document.getElementById('review').value;
+      
+      fetch('http://127.0.0.1:8086/api/movie/predict', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ "review": reviewText })
+      })
+      .then(response => response.json())
+      .then(data => {
+        resultDiv.textContent = `Predicted Sentiment: ${data.sentiment}`;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        resultDiv.textContent = 'Error predicting sentiment.';
+      });
+    });
+  </script>
+</body>
+</html>

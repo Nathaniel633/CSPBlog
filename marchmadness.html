@@ -1,0 +1,78 @@
+---
+permalink: /marchmadness/
+layout: default
+title: March Madness Predictor
+search_exclude: true
+---
+
+<p>A predictor to predict how likely your team is to win March Madness based on PPG, OPP PPG, APG, RPG</p>
+
+<!-- Sample titanic code (modified) -->
+</head>
+<body>
+    <h1>March Madness Predictor</h1>
+    <div>
+        <label>Team Name:</label>
+        <input type="string" id="team-name">
+        <p> </p>
+    </div> 
+    <div>
+        <label for="age">PPG:</label>
+        <input type="float" id="ppg" min="0">
+        <p> </p>
+    </div>
+    <div>
+        <label for="age">OPP PPG:</label>
+        <input type="float" id="oppppg" min="0">
+        <p> </p>
+    </div>
+    <div>
+        <label for="age">APG:</label>
+        <input type="float" id="apg" min="0">
+        <p> </p>
+    </div>
+    <div>
+        <label for="age">RPG:</label>
+        <input type="float" id="rpg" min="0">
+        <p> </p>
+    </div>
+    <div>
+        <button onclick="predictPlacement()">Predict Placement</button>
+    </div>
+    <div id="prediction"></div>
+
+    <script>
+        function predictPlacement() {
+          const teamName = document.getElementById('team-name').value;
+          const PPG = document.getElementById('ppg').value;
+          const OOPPPG = document.getElementById('oopppg').value;
+          const APG = document.getElementById('apg').value;
+          const RPG = document.getElementById('rpg').value;
+    
+          const data = {
+            teamName,
+            PPG,
+            OOPPPG,
+            APG,
+            RPG,
+          };
+    
+          fetch('http://127.0.0.1:8086/api/marchmadnes/predict', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+          .then(response => response.json())
+          .then(prediction => {
+            document.getElementById('prediction').innerText = prediction.placement;
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('prediction').innerText = "Error: Failed to predict placement.";
+          });
+        }
+      </script>
+</body>
+</html>
