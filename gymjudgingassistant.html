@@ -52,6 +52,9 @@ search_exclude: true
     the exception of the vault being just one skill at the end of a run). They are judged by adding up the numerical scores
     of difficulty and execution. Difficulty is determined by the sequence of skills done, with each skill assigned a point
     value demonstrated in the <a target=”_blank” href="https://www.gymnastics.sport/publicdir/rules/files/en_%202022-2024%20MAG%20CoP.pdf">Code of Points</a>.
+    Of course, this project is a slightly simplified version of the judging process for the sake of the conciseness of this project,
+    with systems such as element groups, dismount criteria, connection and dismount bonus, however this is made up for in the
+    "extra points" category.
 </p>
 <br><br>
 <h3 style="font-size: 20px">
@@ -103,7 +106,7 @@ search_exclude: true
     <input type="number" id="extra" value="0" step="0.1">
 </div>
 <div style="text-align:center">
-    <button onclick="score()" class="calc-button">Calculate Score</button>
+    <button onclick="score()" class="calc-button">Calculate Score</button> <!-- Call to procedure 'score' -->
 </div>
 
 <!-- Button to save the current routine scores -->
@@ -162,12 +165,12 @@ search_exclude: true
         document.getElementById("executionScore").textContent = currentExecutionScore.toFixed(1);
     }
     // display complete result
-    function score() {
+    function score() { // procedure for calculating score based on currentTotalDifficulty, currentExecutionScore, extraDeductions
         var extraDeductions = parseFloat(document.getElementById("extra").value);
         var finalScore = currentTotalDifficulty + currentExecutionScore + extraDeductions + 2;
         document.getElementById("finalScore").textContent = finalScore.toFixed(1);
     }
-    // managing history array
+    // managing history array (insp. by ideas from ChatGPT)
     let routineHistory = [];
 
     function saveRoutine(gymnast, event, scores) {
@@ -182,7 +185,7 @@ search_exclude: true
         console.log(`${index + 1}. ${routine.gymnast}: ${routine.scores.totalScore}`);
         });
     }
-    function saveCurrentRoutine() {
+    function saveCurrentRoutine() { // procedure for saving the current routine assigned to the gymnast's name
         const gymnastName = prompt("Enter gymnast's name:");
         const event = document.getElementById('eventSelection').value;
         var extraDeductions = parseFloat(document.getElementById("extra").value);
@@ -196,14 +199,14 @@ search_exclude: true
         }
     }
     
-    function showHistory(selectedEvent) {
+    function showHistory(selectedEvent) { // procedure/algorithm to display saved history from a specific event
         if (!selectedEvent) {
             document.getElementById('historyDisplay').innerHTML = 'Please select an event to view history.';
             return;
         }
-        const filteredRoutines = routineHistory.filter(routine => routine.event === selectedEvent);
-        let historyHTML = `<h3>History for ${selectedEvent}:</h3>`;
-        filteredRoutines.forEach((routine, index) => {
+        const filteredRoutines = routineHistory.filter(routine => routine.event === selectedEvent); // sequences by filtering
+        let historyHTML = `<h3>History for ${selectedEvent}:</h3>`; //selection from user selection
+        filteredRoutines.forEach((routine, index) => { //iterates by looping through filteredRoutines
             historyHTML += `<p>${index + 1}. ${routine.gymnast}: Score - ${routine.scores.totalScore}</p>`;
         });
         document.getElementById('historyDisplay').innerHTML = historyHTML;
