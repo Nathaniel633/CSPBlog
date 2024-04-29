@@ -168,14 +168,14 @@ search_exclude: true
     function score() { // procedure for calculating score based on currentTotalDifficulty, currentExecutionScore, extraDeductions
         var extraDeductions = parseFloat(document.getElementById("extra").value);
         var finalScore = currentTotalDifficulty + currentExecutionScore + extraDeductions + 2;
-        document.getElementById("finalScore").textContent = finalScore.toFixed(1);
+        document.getElementById("finalScore").textContent = finalScore.toFixed(1); // output instruction
     }
     // managing history array (insp. by ideas from ChatGPT)
     let routineHistory = [];
 
     function saveRoutine(gymnast, event, scores) {
         routineHistory.push({ gymnast: gymnast, event: event, scores: scores });
-        console.log('Routine saved:', { gymnast, event, scores });
+        console.log('Routine saved:', { gymnast, event, scores }); // console instruction for output
     }
 
     function displayHistoryByEvent(event) {
