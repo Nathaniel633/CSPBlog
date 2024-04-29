@@ -50,6 +50,12 @@ search_exclude: true
     </div>
     <div id="prediction"></div>
 
+    <button onclick="displayText()">Click Me!</button>
+
+    <div id="textField" style="display: none;">
+        This is the text that appears when you click the button.
+    </div>
+
     <script>
         function predictSurvival() {
             const Pclass = document.getElementById('passenger-class').value;
