@@ -1,0 +1,213 @@
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+    }
+    h1, h3, strong {
+        text-align: center;
+    }
+    .calc-button, .score-button {
+        background-color: #000000;
+        color: #FFFFFF;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+    .score-button {
+        background-color: #000000;
+    }
+    .reset-button {
+        background-color: #FF0000;
+        color: white;
+    }
+    div.center {
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+<head>
+    <h1 style="text-align:center">
+        Gymnastics Judging Assistant
+    </h1>
+</head>
+<br><br>
+<body>
+<h3 style="font-size: 20px">
+    Overview:
+</h3>
+<p>
+    This program is designed to help judge a performed gymnastics routine on 5 of the 6 events in <a target=”_blank” href="https://www.gymnastics.sport/site/discipline.php?disc=2">Men's Artistic Gymnastics</a> 
+    (besides vault as the difficulty is scored slightly differently). For those unfimiliar with the sport, men's gymnastics
+    tests athletes' ability to perform routines on 6 events; floor, pommel horse, rings, vault, parallel bars, and high bar.
+    <br><br>The routines are sequences of specific skills based on how hard they are and how well each skill is performed (with
+    the exception of the vault being just one skill at the end of a run). They are judged by adding up the numerical scores
+    of difficulty and execution. Difficulty is determined by the sequence of skills done, with each skill assigned a point
+    value demonstrated in the <a target=”_blank” href="https://www.gymnastics.sport/publicdir/rules/files/en_%202022-2024%20MAG%20CoP.pdf">Code of Points</a>.
+    Of course, this project is a slightly simplified version of the judging process for the sake of the conciseness of this project,
+    with systems such as element groups, dismount criteria, connection and dismount bonus, however this is made up for in the
+    "extra points" category.
+</p>
+<br><br>
+<h3 style="font-size: 20px">
+    My experience in gymnastics:
+</h3>
+<p>
+    I am currently a competing level 10 at Champion Gymnastics and Cheer in Santee, California. I have an 
+    <a target=”_blank” href="https://www.instagram.com/o_nathan_gym/">Instagram</a> account however I'm not very active.
+    In my freshman year, I made the Southern California State All-Star team of 2023 for level 7, and I went on to win 
+    All-around at Western Nationals. This year, I didn't get so lucky and didn't qualify for nationals, however, I'm back
+    in the gym and making the hours count as I prepare for my Junior season. My scores are online at 
+    <a target=”_blank” href="https://meetscoresonline.com/Athlete.MyScores/706630   ">Meet Scores Online</a>.
+</p>
+<br><br>
+<strong style="font-size: 25px">
+    Difficulty Scoring:
+</strong>
+<div style="text-align:center; margin-top: 10px;">
+    <button class="score-button" onclick="addDifficulty(0.1)">A</button>
+    <button class="score-button" onclick="addDifficulty(0.2)">B</button>
+    <button class="score-button" onclick="addDifficulty(0.3)">C</button>
+    <button class="score-button" onclick="addDifficulty(0.4)">D</button>
+    <button class="score-button" onclick="addDifficulty(0.5)">E</button>
+    <button class="score-button" onclick="addDifficulty(0.6)">F</button>
+    <br><br>
+    <button class="reset-button" onclick="resetDifficulty()" style="background-color: #FF0000;">Reset</button>
+</div>
+<div style="text-align:center; margin-top: 20px;">
+    <span style="font-size: 20px">Total Difficulty Score: <span id="totalDifficulty">0.0</span></span>
+</div>
+<br><br>
+<strong style="font-size: 25px">
+    Execution Scoring:
+</strong>
+<div style="text-align:center; margin-top: 10px;">
+    <button class="score-button" onclick="subtractDeduction(0.1)">-0.1</button>
+    <button class="score-button" onclick="subtractDeduction(0.3)">-0.3</button>
+    <button class="score-button" onclick="subtractDeduction(0.5)">-0.5</button>
+    <button class="score-button" onclick="subtractDeduction(1.0)">-1.0</button>
+    <br><br>
+    <button class="reset-button" onclick="resetExecution()">Reset</button>
+</div>
+<div style="text-align:center; margin-top: 20px;">
+    <span style="font-size: 20px">Total Execution Score: <span id="executionScore">10.0</span></span>
+</div>
+<br><br>
+    <strong style="font-size: 25px">Extra deductions/bonus?:</strong>
+    <label for="extra"></label>
+    <input type="number" id="extra" value="0" step="0.1">
+</div>
+<div style="text-align:center">
+    <button onclick="score()" class="calc-button">Calculate Score</button>
+</div>
+
+
+<button class="calc-button" onclick="saveCurrentRoutine()">Save Routine</button>
+
+
+<select id="eventSelection" onchange="showHistory(this.value)">
+    <option value="">Select Event</option>
+    <option value="Floor">Floor</option>
+    <option value="Pommel Horse">Pommel Horse</option>
+    <option value="Rings">Rings</option>
+    <option value="Parallel Bars">Parallel Bars</option>
+    <option value="High Bar">High Bar</option>
+</select>
+
+
+<div style="text-align:center" id="historyDisplay"></div>
+
+<div style="text-align:center; margin-top: 20px;">
+    <strong style="font-size: 25px">Final Event Score:</strong>
+    <span id="finalScore" style="font-size: 20px">Waiting for calculation...</span>
+</div>
+
+<script>
+    let difficultyCount = 0;
+    let currentTotalDifficulty = 0;
+    let currentExecutionScore = 10;
+
+    function addDifficulty(value) {
+        if (difficultyCount < 10) {
+            currentTotalDifficulty += value;
+            document.getElementById("totalDifficulty").textContent = currentTotalDifficulty.toFixed(1);
+            difficultyCount++;
+        } else {
+            alert('Maximum of 10 difficulty skills reached.');
+        }
+    }
+
+    function resetDifficulty() {
+        currentTotalDifficulty = 0;
+        document.getElementById("totalDifficulty").textContent = currentTotalDifficulty.toFixed(1);
+        difficultyCount = 0;
+    }
+
+    function subtractDeduction(value) {
+        if (currentExecutionScore > 0) {
+            currentExecutionScore -= value;
+            currentExecutionScore = Math.max(currentExecutionScore, 0);
+            document.getElementById("executionScore").textContent = currentExecutionScore.toFixed(1);
+        }
+    }
+
+    function resetExecution() {
+        currentExecutionScore = 10;
+        document.getElementById("executionScore").textContent = currentExecutionScore.toFixed(1);
+    }
+ 
+    function score() {
+        var extraDeductions = parseFloat(document.getElementById("extra").value);
+        var finalScore = currentTotalDifficulty + currentExecutionScore + extraDeductions + 2;
+        document.getElementById("finalScore").textContent = finalScore.toFixed(1);
+    }
+    
+    let routineHistory = [];
+
+    function saveRoutine(gymnast, event, scores) {
+        routineHistory.push({ gymnast: gymnast, event: event, scores: scores });
+        console.log('Routine saved:', { gymnast, event, scores });
+    }
+
+    function displayHistoryByEvent(event) {
+        const filteredRoutines = routineHistory.filter(routine => routine.event === event);
+        console.log(`History for ${event}:`);
+        filteredRoutines.forEach((routine, index) => {
+        console.log(`${index + 1}. ${routine.gymnast}: ${routine.scores.totalScore}`);
+        });
+    }
+    function saveCurrentRoutine() {
+        const gymnastName = prompt("Enter gymnast's name:");
+        const event = document.getElementById('eventSelection').value;
+        var extraDeductions = parseFloat(document.getElementById("extra").value);
+        const scores = { totalScore: currentTotalDifficulty + currentExecutionScore + extraDeductions + 2 };
+    
+        if (event) {
+            saveRoutine(gymnastName, event, scores);
+            alert('Routine saved successfully!');
+        } else {
+            alert('Please select an event.');
+        }
+    }
+    
+    function showHistory(selectedEvent) {
+        if (!selectedEvent) {
+            document.getElementById('historyDisplay').innerHTML = 'Please select an event to view history.';
+            return;
+        }
+        const filteredRoutines = routineHistory.filter(routine => routine.event === selectedEvent);
+        let historyHTML = `<h3>History for ${selectedEvent}:</h3>`;
+        filteredRoutines.forEach((routine, index) => {
+            historyHTML += `<p>${index + 1}. ${routine.gymnast}: Score - ${routine.scores.totalScore}</p>`;
+        });
+        document.getElementById('historyDisplay').innerHTML = historyHTML;
+    }
+    
+
+</script>
+</body>
+
+<footer>
+    <a target=”_blank” href="https://github.com/Nathaniel633/student">Check out my github!</a>
+</footer>
