@@ -177,7 +177,7 @@ search_exclude: true
         routineHistory.push({ gymnast: gymnast, event: event, scores: scores });
         console.log('Routine saved:', { gymnast, event, scores }); // console instruction for output
     }
-
+    
     function displayHistoryByEvent(event) {
         const filteredRoutines = routineHistory.filter(routine => routine.event === event);
         console.log(`History for ${event}:`);
@@ -212,7 +212,7 @@ search_exclude: true
         document.getElementById('historyDisplay').innerHTML = historyHTML;
     }
     
-    
+
 </script>
 </body>
 
