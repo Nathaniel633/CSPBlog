@@ -1,125 +1,48 @@
+## Project and Objective
+> For Student as a repository
 
-## Blog site using GitHub Pages and Jekyll
-> This site is intended for Students.   This is to record plans, complete hacks, and do work for your learnings.
-- This can be customized to support computer science as you work through pathway (JavaScript, Python/Flask, Java/Spring)
-- All tangible artifact work is in a _posts or in a _notebooks.  
-- Front matter (aka meta data) in ipynb and md files is used to organize information according to week and column in running web site.
+My Student repository is a clone of the nighthawkcoders' student repository. This repository was mainly used for planning projects, creating personal contributions to group projects, personal projects, and fun little side projects, as well as the use of the notebook feature to document my projects and learning in this course with weekly plans. Later on in the course, we used utterances to peer grade and offer feedback to each other prior to teacher review. We also took advantage of github issues to create writeups for certain projects, showcasing the process of planning a project, the development process, all the way to the deployment and live site. In this repository you'll find a collection of the projects that I've worked on which taking the AP Computer Science Principles course at Del Norte and working with a variety of groupmates.
 
-## GitHub Pages
-All `GitHub Pages` websites are managed on GitHub infrastructure. GitHub uses `Jekyll` to tranform your content into static websites and blogs. Each time we change files in GitHub it initiates a GitHub Action that rebuilds and publishes the site with Jekyll.  
-- GitHub Pages is powered by: [Jekyll](https://jekyllrb.com/).
-- Publised teacher website: [nighthawkcoders.github.io/teacher](https://nighthawkcoders.github.io/teacher/)
+## Usage
+> The intended use of my repository
 
-## Preparing a Preview Site 
-In all development, it is recommended to test your code before deployment.  The GitHub Pages development process is optimized by testing your development on your local machine, prior to files on GitHub
+As it is primarily notebook based, my project can be used to view my work in this course and how I progressed as a coder and programmer, from creating a functioning timer with a visualizer that I partially copied off the web, to creating a fully functioning gymnastics judger that I apply to my gymnastics training to make my training more efficiently. You can view my site as a timeline as I have it organized through weeks throughout the 36 weeks of the school year. You can also look at the image I created on the first day of school about myself, and through my account system, you can have a personalized experience.
 
-Development Cycle. For GitHub pages, the tooling described below will create a development cycle  `make-code-save-preview`.  In the development cycle, it is a requirement to preview work locally, prior to doing a VSCode `commit` to git.
+## Projects
+> The specific projects I've worked on during AP Computer Science Principles course and Data Structures
 
-Deployment Cycle.  In the deplopyment cycle, `sync-github-action-review`, it is a requirement to complete the development cycle prior to doing a VSCode `sync`.  The sync triggers github repository update.  The action starts the jekyll build to publish the website.  Any step can have errors and will require you to do a review.
+- Scheduling App: An app designed to help students better manage their schedules. Taking input, users can add events to their schedules as well as mark them complete when done. We also incomporated a pomodoro timer to better manage "study time" by creating intervals of 25 minute study periods broken by 5 minute breaks. Our group member Aidan Lau added Canvas API for us to be able to see our personal schedules updated based on what our teachers assign.
 
-### WSL and/or Ubuntu installation requirements
-- The result of these step is Ubuntu tools to run preview server.  These procedures were created using [jekyllrb.com](https://jekyllrb.com/docs/installation/ubuntu/)
-- Run scripts in scripts directory of teacher repo: setup_ubuntu.sh and activate.sh.  Or, follow commands below.
-```bash
-## WSL/Ubuntu commands
-# sudo apt install, installs packages for Ubuntu
-echo "=== Ugrade Packages ==="
-sudo apt update
-sudo apt upgrade -y
-#
-echo "=== Install Ruby ==="
-sudo apt install -y ruby-full build-essential zlib1g-dev
-# 
-echo "=== Install Python ==="
-sudo apt-get install -y python3 python3-pip python-is-python3
-#    
-echo "=== Install Jupyter Notebook ==="
-sudo apt-get install -y jupyter-notebook
+- Turn-based Fantasy Game: This game follows a character along a gameboard of 9 spots as they have to fight an enemy. The enemy is invisible and follows a random path until the character meets the enemy on the square, to which the character has to guess a randomized number to beat the enemy. There are 5 character classes, and each class determines the aesthetic of the game board, as well as the stats of the character. The number of wins are then attached to the user and displayed in a leaderboard.
 
-# bash commands, install user requirements.
-echo "=== GitHub pages build tools  ==="
-export GEM_HOME="$HOME/gems"
-export PATH="$HOME/gems/bin:$PATH"
-echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
-echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
-echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
-echo "=== Gem install starting, thinking... ==="
-gem install jekyll bundler
-head -30 ./teacher/scripts/activate.sh
-echo "=== !!!Start a new Terminal!!! ==="
-```
+- Gymnastics Judging Assistant: This program was a personal program of mine to meet the requirements for the Create Performance Task portion of the AP Computer Science Principles AP exam. In the process of brainstorming, I knew I wanted to create a program that would benefit my life, but specific enough that there wouldn't be another program like it submitted. My love for gymnastics propelled me to create this program as it makes the manual process of judging a gymnastics routine and digitizing it. With buttons, the judge can judge both execution and difficulty more quickly and efficiently. At the end, you click a button and the final score is displayed. You can then store that score in an array based on the gymnast and the event.
 
-### MacOs installation requirements 
-- Ihe result of these step are MacOS tools to run preview server.  These procedures were created using [jekyllrb.com](https://jekyllrb.com/docs/installation/macos/). Run scripts in scripts directory of teacher repo: setup_macos.sh and activate_macos.sh.  Or, follow commands below.
-```bash
-# MacOS commands
-# brew install, installs packages for MacOS
-echo "=== Ugrade Packages ==="
-brew update
-brew upgrade
-#
-echo "=== Install Ruby ==="
-brew install chruby ruby-install xz
-ruby-install ruby 3.1.3
-#
-echo "=== Install Python ==="
-brew install python
-#    
-echo "=== Install Jupyter Notebook ==="
-brew install jupyter
+- Movie Sentiment Analizer: This project was created for our Machine Learning demo, however I used ChatGPT API to perform it. This project takes input of a movie review and outputs the sentiment; either good, bad, or neutral. Doing this, we prompted GPT to receive input of the review and to report a one word answer.
 
-# bash commands, install user requirements.
-export GEM_HOME="$HOME/gems"
-export PATH="$HOME/gems/bin:$PATH"
-echo '# Install Ruby Gems to ~/gems' >> ~/.zshrc
-echo 'export GEM_HOME="$HOME/gems"' >> ~/.zshrc
-echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.zshrc
-echo "=== Gem install starting, thinking... ==="
-gem install jekyll bundler
-head -30 ./teacher/scripts/activate.sh
-echo "=== !!!Start a new Terminal!!! ==="
-```
+## Contributors
+> Other people I have collaborated with (not directly contributing to this repository)
 
-### Preview
-- The result of these step is server running on: http://0.0.0.0:4100/teacher/.  Regeneration messages will run in terminal on any save.  Press the Enter or Return key in the terminal at any time to enter commands.
+This course is highly structured around groupwork, so this year I have gotten used to working with a number of different people. The following people are those of whom I've directly collaborated with during this school year: Rayyan Darugar, Daniel Choi, Aidan Lau, Will Bartelt, Grayson Guyot, Jason Gao, Arushi Pandley, Ellie Rozenkrants, Anusha Khobare, Ananya Asudani, and Cindy Liang.
 
-- Complete installation
-```bash
-bundle install
-```
-- Run Server.  This requires running terminal commands `make`, `make stop`, `make clean`, or `make convert` to manage the running server.  Logging of details will appear in terminal.   A `Makefile` has been created in project to support commands and start processes.
+## Other repositories:
+> The following are other repositories I worked on in a group setting, but are all tied to me in some way
 
-    - Start preview server in terminal
-    ```bash
-    cd ~/vscode/teacher  # my project location, adapt as necessary
-    make
-    ```
+- My main github: https://github.com/Nathaniel633
 
-    - Terminal output of shows server address. Cmd or Ctl click http location to open preview server in browser. Example Server address message... 
-    ```
-    Server address: http://0.0.0.0:4100/teacher/
-    ```
+- Project WRONG: https://github.com/Nathaniel633/WRONG
 
-    - Save on ipynb or md activiates "regeneration". Refresh browser to see updates. Example terminal message...
-    ```
-    Regenerating: 1 file(s) changed at 2023-07-31 06:54:32
-        _notebooks/2024-01-04-cockpit-setup.ipynb
-    ```
+- Project WRONG backend: https://github.com/Nathaniel633/WRONGFlaskNO
 
-    - Terminal message are generated from background processes.  Click return or enter to obtain prompt and use terminal as needed for other tasks.  Alway return to root of project `cd ~/vscode/teacher` for all "make" actions. 
-        
+- This repo (my personal) backend: https://github.com/Nathaniel633/StudentFlask
 
-    - Stop preview server, but leave constructed files in project for your review.
-    ```bash
-    make stop
-    ```
+- dsfront: https://github.com/Nathaniel633/dsfront
 
-    - Stop server and "clean" constructed files, best choice when renaming files to eliminate potential duplicates in constructed files.
-    ```bash
-    make clean
-    ```
+- dsback: https://github.com/Nathaniel633/dsback
 
-    - Test notebook conversions, best choice to see if IPYNB conversion is acting up.
-    ```bash
-    make convert
-    ```
+## My contacts
+
+- Email: nathanieldot0@gmail.com
+
+- Linkedin: https://www.linkedin.com/in/nathan-obodovski-504274296/
+
+- Cell: 858-432-9750
